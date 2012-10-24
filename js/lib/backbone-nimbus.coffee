@@ -1,0 +1,1 @@
+Backbone.sync = Nimbus.backbone_sync
