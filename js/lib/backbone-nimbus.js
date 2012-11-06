@@ -9,4 +9,10 @@
     $("#loading").fadeOut();
   }
 
+  Nimbus.Auth.authorized_callback = function() {
+    if (Nimbus.Auth.authorized()) {
+      return $("#loading").fadeOut();
+    }
+  };
+
 }).call(this);
