@@ -18,6 +18,14 @@ $(function() {
 		"app_name": "todomvc_app"
 	}
 	};
-	Nimbus.Auth.setup(sync_object)
-
+	Nimbus.Auth.authorized_callback = function(){
+		if(Nimbus.Auth.authorized()){
+			$("#loading").fadeOut();
+			console.log("authorized_callback");
+			app.Todos.nimbus.sync_all(function(){
+				app.Todos.fetch();
+			});
+		}
+	}
+	Nimbus.Auth.setup(sync_object);
 });
