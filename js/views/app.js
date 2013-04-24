@@ -20,7 +20,8 @@ $(function( $ ) {
 		events: {
 			'keypress #new-todo': 'createOnEnter',
 			'click #clear-completed': 'clearCompleted',
-			'click #toggle-all': 'toggleAllComplete'
+			'click #toggle-all': 'toggleAllComplete',
+			'auth_event': 'syncData'
 		},
 
 		// At initialization we bind to the relevant events on the `Todos`
@@ -125,6 +126,13 @@ $(function( $ ) {
 				todo.save({
 					'completed': completed
 				});
+			});
+		},
+
+		syncData: function(){
+			console.log("syncData");
+			app.Todos.nimbus.sync_all(function(){
+				app.Todos.fetch();
 			});
 		}
 	});

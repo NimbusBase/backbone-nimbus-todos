@@ -1,11 +1,10 @@
 Backbone.sync = Nimbus.backbone_sync
-
-Nimbus.Auth.setup("Dropbox", "q5yx30gr8mcvq4f", "qy64qphr70lwui5", "todomvc_app")
-
-if Nimbus.Auth.authorized()
-  $("#loading").fadeOut()
-  
+# init()
 Nimbus.Auth.authorized_callback = ()->
+  init()
 
+init = () -> 
   if Nimbus.Auth.authorized()
     $("#loading").fadeOut()
+    console.log 'authorized_callback'
+    $("#todoapp").trigger('auth_event')
