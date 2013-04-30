@@ -18,7 +18,7 @@ $(function() {
 		"app_name": "todomvc_app"
 	}
 	};
-	Nimbus.Auth.authorized_callback = init();
+	Nimbus.Auth.authorized_callback = init;
 	Nimbus.Auth.setup(sync_object);
 	if(Nimbus.Auth.authorized()){
 		init();
@@ -28,7 +28,6 @@ $(function() {
 	function init(){
 		if(Nimbus.Auth.authorized()){
 			$("#loading").fadeOut();
-			console.log("authorized_callback");
 			var nimbusStore = app.Todos.nimbus;
 			nimbusStore.sync_all(function(){
 				app.Todos.fetch();
